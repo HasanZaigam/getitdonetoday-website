@@ -26,34 +26,46 @@ npm run lint     # ESLint
 
 ```
 app/
-  layout.tsx        # Inter font, SEO metadata, Open Graph
-  page.tsx          # composes the sections
-  globals.css       # design tokens (Tailwind @theme) + base styles
-  icon.svg          # favicon (blue "</>" mark)
+  layout.tsx            # Inter font, SEO metadata, skip link
+  page.tsx              # composes the sections
+  privacy/, terms/      # legal pages (plain-language, beta)
+  opengraph-image.tsx   # 1200×630 share image (also twitter-image.tsx)
+  globals.css           # design tokens (Tailwind @theme) + base styles
+  icon.svg              # favicon (same "</>" mark as the header)
   robots.ts, sitemap.ts
 components/
-  sections/         # Navbar, Hero, ModelStrip, VideoTour, Problem, HowItWorks,
-                    # Features, Audience, Testimonial, Pricing, FAQ, FinalCTA, Footer
-  ui.tsx            # Container, ButtonLink, Logo, SectionHeading, Card
-  icons.tsx         # inline stroke SVG icons
-  ScrollReveal.tsx  # fade-in on scroll (respects prefers-reduced-motion)
+  sections/             # Navbar, Hero, ModelStrip, VideoTour, Problem, HowItWorks,
+                        # Features, Audience, Testimonial (founder note), Pricing,
+                        # FAQ, FinalCTA, Footer
+  LegalPage.tsx         # shared layout for /privacy and /terms
+  ui.tsx                # Container, ButtonLink, SmartLink, Logo, LogoMark, SectionHeading, Card
+  icons.tsx             # inline stroke SVG icons
+  ScrollReveal.tsx      # fade-in on scroll (respects prefers-reduced-motion)
 lib/
-  content.ts        # all copy and data arrays, edit text here
+  content.ts            # all copy, facts and data arrays: edit text here
+  og-image.tsx          # drawing for the share image
 design/
-  Main.dc.html      # original visual reference
-public/video/
-  GetItDoneToday-Walkthrough-Voiced.mp4  # product tour (H.264/AAC, faststart)
-  walkthrough-poster.jpg                 # poster frame shown before play
+  Main.dc.html          # original visual reference
+public/
+  video/GetItDoneToday-Walkthrough-Voiced.mp4  # product tour (H.264/AAC, faststart)
+  images/task-review-screenshot.jpg            # product screenshot in the Features section
 ```
+
+Facts that appear in several places (key storage, GitHub behaviour, contact email, links) are constants at the top of `lib/content.ts`, so the page, FAQ and privacy policy can't drift apart.
 
 ### Replacing the product tour video
 
-Keep the same file name, or update `videoTour` in `lib/content.ts`. Before committing, move the MP4 index to the front so playback starts quickly, and regenerate the poster:
+The page loads the video from jsDelivr, pinned to a commit (`VIDEO_CDN` in `lib/content.ts`), because the repo is public. To replace it, move the MP4 index to the front so playback starts quickly, commit it, then point `VIDEO_CDN` at the new commit (or at `/video/...` to serve it from this site):
 
 ```bash
 ffmpeg -i input.mp4 -c copy -movflags +faststart public/video/GetItDoneToday-Walkthrough-Voiced.mp4
-ffmpeg -ss 2 -i public/video/GetItDoneToday-Walkthrough-Voiced.mp4 -frames:v 1 -vf scale=1600:-1 -q:v 3 public/video/walkthrough-poster.jpg
 ```
+
+The poster before playback is drawn in HTML (`VideoTour.tsx`), so it needs no image.
+
+### Replacing the product screenshot
+
+Put the new image in `public/images/` and update `features.highlight.screenshot` (src, width, height, alt) in `lib/content.ts`. `next/image` serves it as WebP/AVIF automatically.
 
 Colours, fonts and radii are defined as tokens in `app/globals.css` (for example `bg-card`, `text-muted`, `border-line` and `bg-brand`). Use those tokens instead of adding raw hex values.
 
@@ -67,12 +79,12 @@ Every push to `main` deploys to production, and every other branch or PR gets a 
 
 ## TODO before launch
 
-These placeholders are intentionally left in `lib/content.ts`:
+There are no placeholders left on the page. Still worth doing:
 
-- [ ] **Customer quote**: replace `[ADD A CUSTOMER QUOTE …]` and `[NAME], [ROLE, COMPANY]` in `testimonial`.
-- [ ] **Team price**: replace `[YOUR PRICE]` in `pricing.plans`.
-- [ ] **API-key storage answer**: replace `[YOUR ANSWER — explain how keys are stored and encrypted.]` in `faq.items`.
-- [ ] **Confirm the model list**: check that OpenAI, Anthropic, Google Gemini, Mistral and DeepSeek (`modelStrip.providers`) and the board mock's model chips match what the app supports.
-- [ ] **Confirm the features**: check that every item in `features.items` (Google sign-in, instant notifications, and so on) is live in the app.
-- [ ] Optional: add a captions file (`.vtt`) for the product tour so the narration is accessible without sound.
-- [ ] Optional: add an Open Graph image (`app/opengraph-image.png`, 1200×630) for nicer link previews.
+- [ ] **Founder note**: check the wording in `founderNote` (`lib/content.ts`) reads the way you'd say it.
+- [ ] **Legal review**: `/privacy` and `/terms` are plain-language beta drafts, not legal advice. Have them reviewed, especially for your jurisdiction.
+- [ ] **Customer quote**: when you have a real one, add it next to (or instead of) the founder note.
+- [ ] **Inbox**: make sure `hello@getitdonetoday.in` receives mail. The footer, legal pages and the Team plan's "Notify me" button use it.
+- [ ] **Share preview**: check `/opengraph-image` and test a link in LinkedIn/X/Slack after deploying.
+- [ ] Optional: a fresh, higher-resolution product screenshot for the GitHub feature.
+- [ ] Optional: a captions file (`.vtt`) for the product tour so the narration works without sound.
