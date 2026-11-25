@@ -67,14 +67,21 @@ export const board = {
   ] satisfies BoardColumn[],
 };
 
+const VIDEO_CDN =
+  "https://cdn.jsdelivr.net/gh/HasanZaigam/getitdonetoday-website@8f8aaf8/public/video";
+
 // Title and subtitle are taken from the video's own opening card.
 export const videoTour = {
   eyebrow: "Product tour",
   title: "Your first 10 minutes, in two.",
   subtitle:
     "A quick tour of every screen, for first-time users: sign up, connect GitHub, create a project and start your first task.",
-  src: "/video/GetItDoneToday-Walkthrough-Voiced.mp4",
-  poster: "/video/walkthrough-poster.jpg",
+  // Served from jsDelivr (mirrors the public GitHub repo), pinned to the commit that
+  // added the files. The same files also live in public/video/. To serve them from
+  // this site instead, use "/video/GetItDoneToday-Walkthrough-Voiced.mp4" and
+  // "/video/walkthrough-poster.jpg".
+  src: `${VIDEO_CDN}/GetItDoneToday-Walkthrough-Voiced.mp4`,
+  poster: `${VIDEO_CDN}/walkthrough-poster.jpg`,
   duration: "2:21",
   durationLabel: "2 minutes 21 seconds",
   heroLink: "Watch the 2-minute tour",
