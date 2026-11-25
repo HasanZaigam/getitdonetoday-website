@@ -23,8 +23,9 @@ export const metadata: Metadata = {
     description: site.description,
     locale: "en_IN",
   },
+  // og:image and twitter:image come from app/opengraph-image.tsx and app/twitter-image.tsx.
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: site.title,
     description: site.description,
   },
