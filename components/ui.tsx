@@ -1,4 +1,11 @@
+import Link from "next/link";
 import type { ComponentPropsWithoutRef, ReactNode } from "react";
+
+/** Internal paths ("/", "/#features", "/privacy") use next/link; everything else is a plain <a>. */
+export function SmartLink({ href = "", ...props }: ComponentPropsWithoutRef<"a">) {
+  if (href.startsWith("/")) return <Link href={href} {...props} />;
+  return <a href={href} {...props} />;
+}
 
 export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
@@ -37,33 +44,48 @@ export function ButtonLink({
   ...props
 }: ComponentPropsWithoutRef<"a"> & { variant?: ButtonVariant; size?: ButtonSize }) {
   return (
-    <a className={cn(buttonBase, buttonVariants[variant], buttonSizes[size], className)} {...props} />
+    <SmartLink className={cn(buttonBase, buttonVariants[variant], buttonSizes[size], className)} {...props} />
   );
 }
 
-export function LogoMark({ small = false }: { small?: boolean }) {
+/**
+ * The "</>" logo tile. Same geometry as app/icon.svg (favicon) and the OG image,
+ * so the mark is identical everywhere.
+ */
+export function LogoMark({ size = 34 }: { size?: number }) {
   return (
-    <span
+    <svg
       aria-hidden="true"
-      className={cn(
-        "inline-flex shrink-0 items-center justify-center bg-brand font-mono font-semibold text-on-brand",
-        small ? "size-6 rounded-[8px] text-[10px]" : "size-[34px] rounded-[11px] text-[13px]",
-      )}
+      width={size}
+      height={size}
+      viewBox="0 0 32 32"
+      fill="none"
+      className="shrink-0"
     >
-      &lt;/&gt;
-    </span>
+      <rect width="32" height="32" rx="10" className="fill-brand" />
+      <g
+        className="stroke-on-brand"
+        strokeWidth="2.25"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M11.5 11 7 16l4.5 5" />
+        <path d="M20.5 11 25 16l-4.5 5" />
+        <path d="M17.5 9.5l-3 13" />
+      </g>
+    </svg>
   );
 }
 
 export function Logo({ wordmark }: { wordmark: string }) {
   return (
-    <a
-      href="#top"
+    <Link
+      href="/#top"
       className="flex items-center gap-2.5 text-xl font-bold tracking-[-0.01em] text-fg"
     >
       <LogoMark />
       {wordmark}
-    </a>
+    </Link>
   );
 }
 

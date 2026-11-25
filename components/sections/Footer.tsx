@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="border-t border-line">
       <Container className="flex flex-col gap-4 py-8 text-sm text-subtle sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
         <p className="flex items-center gap-2.5">
-          <LogoMark small />
+          <LogoMark size={24} />
           {footer.copyright}
         </p>
         <nav aria-label="Footer">

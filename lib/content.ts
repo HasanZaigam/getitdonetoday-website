@@ -6,7 +6,7 @@ export const APP_LOGIN_URL = "https://app.getitdonetoday.in/login";
 
 export const site = {
   name: "GetItDoneToday",
-  wordmark: "GetItDoneToday.in",
+  wordmark: "GetItDoneToday",
   title: "GetItDoneToday — The control plane for AI-powered engineering teams",
   description:
     "Plan, assign and ship engineering work with any AI model. Model-agnostic and bring-your-own-key, built for dev agencies and startups. Free during beta.",
@@ -33,16 +33,16 @@ export const hero = {
 };
 
 export type BoardCard = { title: string; model: string; who: string };
-export type BoardColumn = { name: string; count: number; cards: BoardCard[] };
+export type BoardColumn = { name: string; done?: boolean; cards: BoardCard[] };
 
+// Column counts and the "X of Y done" chip are computed from these cards in Hero.tsx,
+// so they always agree with what is shown.
 export const board = {
   workspace: "Workspace",
   project: "Client website rebuild",
-  status: "Today · 4 of 6 done",
   columns: [
     {
       name: "To do",
-      count: 2,
       cards: [
         { title: "Write tests for the auth flow", model: "Claude", who: "AK" },
         { title: "Draft release notes", model: "GPT", who: "RS" },
@@ -50,7 +50,6 @@ export const board = {
     },
     {
       name: "In progress",
-      count: 2,
       cards: [
         { title: "Generate checkout API endpoints", model: "Gemini", who: "HZ" },
         { title: "Refactor dashboard components", model: "Claude", who: "NM" },
@@ -58,7 +57,7 @@ export const board = {
     },
     {
       name: "Done today",
-      count: 4,
+      done: true,
       cards: [
         { title: "Fix push notification bug", model: "GPT", who: "HZ" },
         { title: "Migrate users table to Postgres", model: "DeepSeek", who: "AK" },

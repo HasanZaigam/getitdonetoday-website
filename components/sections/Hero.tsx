@@ -50,6 +50,9 @@ const columnDot: Record<string, string> = {
 };
 
 function BoardMock() {
+  const total = board.columns.reduce((n, col) => n + col.cards.length, 0);
+  const done = board.columns.filter((col) => col.done).reduce((n, col) => n + col.cards.length, 0);
+
   return (
     <figure
       aria-label={`Example board: ${board.project}`}
@@ -67,12 +70,12 @@ function BoardMock() {
           </span>
         </div>
         <span className="rounded-full bg-chip px-2.5 py-1 text-xs font-semibold text-brand-light">
-          {board.status}
+          Today · {done} of {total} done
         </span>
       </div>
       <div className="flex flex-wrap gap-4 p-4 sm:p-5">
         {board.columns.map((col) => {
-          const done = col.name === "Done today";
+          const isDone = Boolean(col.done);
           return (
             <div
               key={col.name}
@@ -80,7 +83,7 @@ function BoardMock() {
             >
               <p className="flex items-center gap-2 text-[13px] font-semibold text-muted">
                 <span aria-hidden="true" className={cn("size-1.5 rounded-full", columnDot[col.name])} />
-                {col.name} <span className="text-subtle">{col.count}</span>
+                {col.name} <span className="text-subtle">{col.cards.length}</span>
               </p>
               <ul className="flex flex-col gap-2.5">
                 {col.cards.map((card) => (
@@ -89,7 +92,7 @@ function BoardMock() {
                     className="rounded-[10px] border border-line bg-card-inner p-3 transition-colors hover:border-line-strong"
                   >
                     <p className="flex items-start gap-2 text-sm font-medium">
-                      {done ? <CheckIcon className="mt-0.5 size-4 shrink-0 text-success" /> : null}
+                      {isDone ? <CheckIcon className="mt-0.5 size-4 shrink-0 text-success" /> : null}
                       <span>{card.title}</span>
                     </p>
                     <div className="mt-2.5 flex items-center justify-between">
