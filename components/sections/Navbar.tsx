@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { APP_LOGIN_URL, navLinks, site } from "@/lib/content";
 import { CloseIcon, MenuIcon } from "@/components/icons";
-import { ButtonLink, Container, Logo } from "@/components/ui";
+import { ButtonLink, Container, Logo, SmartLink } from "@/components/ui";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
@@ -38,9 +38,9 @@ export function Navbar() {
           <ul className="hidden items-center gap-6 text-[15px] lg:flex xl:gap-7">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-muted transition-colors hover:text-fg">
+                <SmartLink href={link.href} className="text-muted transition-colors hover:text-fg">
                   {link.label}
-                </a>
+                </SmartLink>
               </li>
             ))}
           </ul>
@@ -77,13 +77,13 @@ export function Navbar() {
           <ul className="flex flex-col">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <SmartLink
                   href={link.href}
                   onClick={close}
                   className="block py-3 text-base text-muted transition-colors hover:text-fg"
                 >
                   {link.label}
-                </a>
+                </SmartLink>
               </li>
             ))}
           </ul>

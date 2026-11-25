@@ -7,29 +7,37 @@ export const APP_LOGIN_URL = "https://app.getitdonetoday.in/login";
 export const site = {
   name: "GetItDoneToday",
   wordmark: "GetItDoneToday",
-  title: "GetItDoneToday — The control plane for AI-powered engineering teams",
+  title: "GetItDoneToday — The AI task board for dev agencies and startups",
   description:
-    "Plan, assign and ship engineering work with any AI model. Model-agnostic and bring-your-own-key, built for dev agencies and startups. Free during beta.",
+    "Give engineering tasks to any AI model with your own API keys, connect GitHub, and follow every task to a merged pull request. Built for dev agencies and startups. Free during beta.",
 };
 
 export type NavLink = { label: string; href: string };
 
+// "/#…" so the links also work from /privacy and /terms.
 export const navLinks: NavLink[] = [
-  { label: "Product tour", href: "#tour" },
-  { label: "Features", href: "#features" },
-  { label: "How it works", href: "#how" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Product tour", href: "/#tour" },
+  { label: "Features", href: "/#features" },
+  { label: "How it works", href: "/#how" },
+  { label: "Pricing", href: "/#pricing" },
+  { label: "FAQ", href: "/#faq" },
 ];
+
+// Confirmed wording for how API keys are stored. Used in the BYOK feature strip,
+// the FAQ and the privacy policy, so they can never disagree.
+export const KEY_STORAGE =
+  "Your API keys are encrypted at rest with AES-256-GCM and only decrypted to call the provider you chose.";
+
+export const GITHUB_SUMMARY =
+  "Connect a repo once. Each task gets its own branch, opens a pull request, and shows as merged when you merge it.";
 
 export const hero = {
   badge: "Now live · Free during beta",
-  title: "The control plane for AI-powered engineering teams.",
+  title: "Ship client work with AI. See exactly what got done.",
   subtitle:
-    "Plan, assign and ship engineering work with any AI model. Your keys, your models, and one place to see what got done today.",
+    "GetItDoneToday is the AI task board for dev agencies and startups. Give tasks to any model with your own API keys, and follow each one from branch to merged pull request.",
   primaryCta: { label: "Start free", href: APP_LOGIN_URL },
-  secondaryCta: { label: "See how it works", href: "#how" },
-  footnote: "Sign in with Google · Bring your own API keys · No credit card",
+  footnote: "Sign in with Google or email · Bring your own API keys · No credit card",
 };
 
 export type BoardCard = { title: string; model: string; who: string };
@@ -72,18 +80,19 @@ const VIDEO_CDN =
 // Title and subtitle are taken from the video's own opening card.
 export const videoTour = {
   eyebrow: "Product tour",
-  title: "Your first 10 minutes, in two.",
+  title: "Your first 10 minutes, in 2:21.",
   subtitle:
     "A quick tour of every screen, for first-time users: sign up, connect GitHub, create a project and start your first task.",
   // Served from jsDelivr (mirrors the public GitHub repo), pinned to the commit that
-  // added the files. The same files also live in public/video/. To serve them from
-  // this site instead, use "/video/GetItDoneToday-Walkthrough-Voiced.mp4" and
-  // "/video/walkthrough-poster.jpg".
+  // added the file. The same file also lives in public/video/. To serve it from this
+  // site instead, use "/video/GetItDoneToday-Walkthrough-Voiced.mp4".
+  // The poster is drawn in HTML (VideoTour.tsx) so it uses the site's own logo mark.
   src: `${VIDEO_CDN}/GetItDoneToday-Walkthrough-Voiced.mp4`,
-  poster: `${VIDEO_CDN}/walkthrough-poster.jpg`,
   duration: "2:21",
   durationLabel: "2 minutes 21 seconds",
-  heroLink: "Watch the 2-minute tour",
+  posterKicker: "Product tour",
+  posterTitle: "Your first 10 minutes",
+  heroCta: "Watch the tour · 2:21",
 };
 
 export const modelStrip = {
@@ -120,22 +129,39 @@ export const howItWorks = {
       body: "Add your own API keys for the providers you use. Nothing is locked to one vendor.",
     },
     {
+      title: "Connect GitHub",
+      body: "Link a repository once. Every task gets its own branch and pull request.",
+    },
+    {
       title: "Plan and assign",
       body: "Break work into tasks, give them to people and AI, and track everything on one board.",
     },
     {
       title: "Ship today",
-      body: "Review the output, mark it done, and see what the whole team finished by end of day.",
+      body: "Review what changed, merge the pull request, and see what the whole team finished by end of day.",
     },
   ] satisfies TextCard[],
 };
 
-export type FeatureIcon = "board" | "key" | "switch" | "eye" | "bell" | "login";
-export type Feature = TextCard & { icon: FeatureIcon };
+export type FeatureIcon = "board" | "key" | "switch" | "eye" | "review" | "checks" | "github";
+export type Feature = TextCard & { icon: FeatureIcon; note?: string };
 
 export const features = {
   eyebrow: "Features",
   title: "Everything your AI workflow was missing.",
+  highlight: {
+    icon: "github" as FeatureIcon,
+    title: "GitHub built in",
+    body: GITHUB_SUMMARY,
+    // Real product screenshot (cropped from the product tour). To swap it, replace
+    // the file in public/images/ and update width, height and alt here.
+    screenshot: {
+      src: "/images/task-review-screenshot.jpg",
+      width: 1600,
+      height: 598,
+      alt: "A finished task in GetItDoneToday: the files that changed, passing tests and build, an approved independent review, and a View Pull Request button.",
+    },
+  },
   items: [
     {
       icon: "board",
@@ -146,6 +172,7 @@ export const features = {
       icon: "key",
       title: "Bring your own key",
       body: "Use your own API keys. You stay in control of providers and costs.",
+      note: KEY_STORAGE,
     },
     {
       icon: "switch",
@@ -158,14 +185,14 @@ export const features = {
       body: "See who did what, with which model, and what shipped today, at a glance.",
     },
     {
-      icon: "bell",
-      title: "Instant notifications",
-      body: "Get notified the moment a task moves, so nothing waits on a missed update.",
+      icon: "review",
+      title: "Independent AI review",
+      body: "A second AI reviews every change before the pull request is opened, so you start from a checked diff.",
     },
     {
-      icon: "login",
-      title: "Sign in with Google",
-      body: "One click to get your team in. No new passwords to manage.",
+      icon: "checks",
+      title: "Runs your checks",
+      body: "It runs your validation commands, like tests and builds, and fixes its own failures before you review.",
     },
   ] satisfies Feature[],
 };
@@ -234,7 +261,7 @@ export const faq = {
     },
     {
       q: "How are my API keys stored?",
-      a: "[YOUR ANSWER — explain how keys are stored and encrypted.]",
+      a: KEY_STORAGE,
     },
     {
       q: "Is it really free?",

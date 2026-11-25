@@ -6,7 +6,7 @@ export function HowItWorks() {
     <section id="how" aria-labelledby="how-title" className="pt-28">
       <Container>
         <SectionHeading id="how-title" eyebrow={howItWorks.eyebrow} title={howItWorks.title} />
-        <ol className="mt-12 grid gap-10 md:grid-cols-3 md:gap-5" data-reveal>
+        <ol className="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-x-5 lg:grid-cols-4" data-reveal>
           {howItWorks.steps.map((step, i) => (
             <li
               key={step.title}

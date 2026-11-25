@@ -51,19 +51,28 @@ const featurePaths: Record<FeatureIcon, ReactNode> = {
       <circle cx="12" cy="12" r="3" />
     </>
   ),
-  // Bell
-  bell: (
+  // Shield with check (independent review)
+  review: (
     <>
-      <path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-      <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+      <path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6L12 3Z" />
+      <path d="m8.8 12 2.2 2.2 4.2-4.4" />
     </>
   ),
-  // Log in
-  login: (
+  // Terminal (runs your checks)
+  checks: (
     <>
-      <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
-      <path d="M10 17l5-5-5-5" />
-      <path d="M15 12H3" />
+      <rect x="3" y="4" width="18" height="16" rx="2" />
+      <path d="m7 9 3 3-3 3M13 15h4" />
+    </>
+  ),
+  // Git branch / pull request
+  github: (
+    <>
+      <circle cx="6" cy="5.5" r="2.5" />
+      <circle cx="6" cy="18.5" r="2.5" />
+      <circle cx="18" cy="18.5" r="2.5" />
+      <path d="M6 8v8M18 16v-5a4 4 0 0 0-4-4h-3" />
+      <path d="m13 4.5-2.5 2.5L13 9.5" />
     </>
   ),
 };
@@ -101,6 +110,15 @@ export function PlayIcon({ className }: { className?: string }) {
     <svg aria-hidden="true" viewBox="0 0 24 24" className={className} fill="currentColor">
       <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
     </svg>
+  );
+}
+
+export function LockIcon({ className }: { className?: string }) {
+  return (
+    <Svg width={16} height={16} className={className}>
+      <rect x="4.5" y="10.5" width="15" height="10" rx="2" />
+      <path d="M8 10.5V7.5a4 4 0 0 1 8 0v3" />
+    </Svg>
   );
 }
 

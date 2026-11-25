@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { videoTour } from "@/lib/content";
 import { PlayIcon } from "@/components/icons";
-import { Container, SectionHeading } from "@/components/ui";
+import { Container, LogoMark, SectionHeading } from "@/components/ui";
 
 export function VideoTour() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,7 +36,6 @@ export function VideoTour() {
               ref={videoRef}
               className="size-full object-cover"
               src={videoTour.src}
-              poster={videoTour.poster}
               preload="none"
               playsInline
               aria-label={`GetItDoneToday product walkthrough, ${videoTour.durationLabel}`}
@@ -46,15 +45,27 @@ export function VideoTour() {
               <button
                 type="button"
                 onClick={play}
-                className="group absolute inset-0 flex items-end justify-end p-3 transition-colors hover:bg-bg/5 sm:justify-center sm:p-0 sm:pb-[9%]"
+                className="group absolute inset-0 flex flex-col items-center justify-center gap-3 bg-column px-6 text-center sm:gap-5"
                 aria-label={`Play the product tour (${videoTour.durationLabel})`}
               >
-                <span className="flex items-center gap-3 rounded-full bg-brand p-1.5 text-on-brand shadow-[0_12px_40px_-8px_rgba(21,93,252,0.7)] transition-transform duration-200 group-hover:scale-[1.04] sm:py-3 sm:pr-6 sm:pl-3">
-                  <span className="flex size-9 items-center justify-center rounded-full bg-on-brand text-brand sm:size-11">
+                {/* Faint board-grid backdrop, drawn in CSS so it costs no request. */}
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]"
+                />
+                <span className="relative flex items-center gap-2.5 text-lg font-bold tracking-[-0.01em] text-fg sm:text-xl">
+                  <LogoMark size={30} />
+                  GetItDoneToday
+                </span>
+                <span className="relative text-[clamp(22px,4vw,44px)] leading-[1.1] font-bold tracking-[-0.025em] text-fg">
+                  {videoTour.posterTitle}
+                </span>
+                <span className="relative mt-1 flex items-center gap-3 rounded-full bg-brand p-1.5 pr-5 text-on-brand shadow-[0_12px_40px_-8px_rgba(21,93,252,0.7)] transition-transform duration-200 group-hover:scale-[1.04] motion-reduce:group-hover:scale-100 sm:p-2 sm:pr-6">
+                  <span className="flex size-8 items-center justify-center rounded-full bg-on-brand text-brand sm:size-10">
                     <PlayIcon className="ml-0.5 size-4 sm:size-5" />
                   </span>
-                  <span className="hidden text-base font-semibold sm:inline">
-                    Watch the tour <span className="font-medium text-on-brand-soft">· {videoTour.duration}</span>
+                  <span className="text-sm font-semibold sm:text-base">
+                    {videoTour.posterKicker} · {videoTour.duration}
                   </span>
                 </span>
               </button>

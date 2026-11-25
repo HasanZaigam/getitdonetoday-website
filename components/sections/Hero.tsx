@@ -22,20 +22,12 @@ export function Hero() {
         <p className="mx-auto mt-6 max-w-[680px] text-lg text-muted sm:text-xl">{hero.subtitle}</p>
         <div className="mt-9 flex flex-wrap justify-center gap-3">
           <ButtonLink href={hero.primaryCta.href}>{hero.primaryCta.label}</ButtonLink>
-          <ButtonLink href={hero.secondaryCta.href} variant="secondary">
-            {hero.secondaryCta.label}
+          <ButtonLink href="#tour" variant="secondary" className="gap-2.5 pl-[18px]">
+            <PlayIcon className="size-4 text-brand-light" />
+            {videoTour.heroCta}
           </ButtonLink>
         </div>
         <p className="mt-[18px] text-sm text-subtle">{hero.footnote}</p>
-        <a
-          href="#tour"
-          className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-brand-light transition-colors hover:text-fg"
-        >
-          <span className="flex size-6 items-center justify-center rounded-full bg-chip">
-            <PlayIcon className="ml-px size-3" />
-          </span>
-          {videoTour.heroLink}
-        </a>
 
         <BoardMock />
       </Container>
