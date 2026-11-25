@@ -74,8 +74,13 @@ export const board = {
   ] satisfies BoardColumn[],
 };
 
-const VIDEO_CDN =
-  "https://cdn.jsdelivr.net/gh/HasanZaigam/getitdonetoday-website@8f8aaf8/public/video";
+// Binary assets are served from jsDelivr, which mirrors this public GitHub repo, pinned
+// to the commit that added each file (so a later change never alters what's live).
+// The same files live in public/; switch to "/video/..." or "/images/..." to serve them
+// from this site instead. Allowed for next/image in next.config.ts.
+const REPO_CDN = "https://cdn.jsdelivr.net/gh/HasanZaigam/getitdonetoday-website";
+const VIDEO_CDN = `${REPO_CDN}@8f8aaf8/public/video`;
+const IMAGES_CDN = `${REPO_CDN}@809369b/public/images`;
 
 // Title and subtitle are taken from the video's own opening card.
 export const videoTour = {
@@ -174,9 +179,10 @@ export const features = {
     title: "GitHub built in",
     body: GITHUB_SUMMARY,
     // Real product screenshot (cropped from the product tour). To swap it, replace
-    // the file in public/images/ and update width, height and alt here.
+    // the file in public/images/, commit it, and update src (see IMAGES_CDN), width,
+    // height and alt here.
     screenshot: {
-      src: "/images/task-review-screenshot.jpg",
+      src: `${IMAGES_CDN}/task-review-screenshot.jpg`,
       width: 1600,
       height: 598,
       alt: "A finished task in GetItDoneToday: the files that changed, passing tests and build, an approved independent review, and a View Pull Request button.",
