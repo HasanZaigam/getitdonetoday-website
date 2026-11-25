@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* Design tokens — match the live app (dark theme only). */
+@theme {
+  --color-bg: #0a0a0a;
+  --color-card: #171717;
+  --color-card-inner: #1f1f1f;
+  --color-chip: #262626;
+  --color-chip-alt: #27272a;
+  --color-column: #111111;
+
+  --color-fg: #fafafa;
+  --color-muted: #a1a1a1;
+  --color-subtle: #8a8a8a;
+  --color-faint: #737373;
+  --color-light: #d4d4d4;
+
+  --color-line: rgb(255 255 255 / 0.1);
+  --color-line-strong: rgb(255 255 255 / 0.15);
+
+  --color-brand: #155dfc;
+  --color-on-brand: #eff6ff;
+  --color-on-brand-soft: #dbeafe;
+  --color-brand-light: #7aa2ff;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+    background-color: var(--color-bg);
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: var(--color-on-brand);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Fade-in on scroll. Only applied by <ScrollReveal> to elements that start
+     below the fold, so content is never hidden without JavaScript. */
+  .reveal-pending {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .reveal-pending.reveal-visible {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 600ms ease-out,
+      transform 600ms ease-out;
+  }
+}
+
+/* Hide the default disclosure triangle on FAQ items. */
+summary::-webkit-details-marker {
+  display: none;
+}

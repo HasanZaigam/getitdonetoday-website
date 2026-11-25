@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>GetItDoneToday — The control plane for AI-powered engineering teams</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400..700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0A0A0A}
+a{color:#F5F5F4}a:hover{color:#FFFFFF}
+h1,h2,h3{font-family:Inter,system-ui,sans-serif;margin:0}
+p{margin:0}
+</style>
+</helmet>
+<div id="top" style="background:#0A0A0A;color:#F5F5F4;font-family:Inter,system-ui,sans-serif;line-height:1.5">
+
+<header style="border-bottom:1px solid rgba(255,255,255,0.10)">
+<nav style="max-width:1200px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+<a href="#top" style="display:flex;align-items:center;gap:10px;text-decoration:none;font-family:Inter,system-ui,sans-serif;font-weight:700;font-size:20px;color:#F5F5F4">
+<span aria-hidden="true" style="width:34px;height:34px;border-radius:11px;background:{{accent}};color:#EFF6FF;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">&lt;/&gt;</span>GetItDoneToday.in</a>
+<div style="display:flex;flex-wrap:wrap;gap:28px;font-size:15px">
+<a href="#features" style="text-decoration:none;color:#A1A1A1">Features</a>
+<a href="#how" style="text-decoration:none;color:#A1A1A1">How it works</a>
+<a href="#pricing" style="text-decoration:none;color:#A1A1A1">Pricing</a>
+<a href="#faq" style="text-decoration:none;color:#A1A1A1">FAQ</a>
+</div>
+<div style="display:flex;gap:12px;align-items:center">
+<a href="https://app.getitdonetoday.in/login" style="text-decoration:none;font-size:15px;padding:12px 16px">Sign in</a>
+<a href="https://app.getitdonetoday.in/login" style="text-decoration:none;font-size:15px;font-weight:600;padding:12px 18px;border-radius:999px;background:{{accent}};color:#EFF6FF">Start free</a>
+</div>
+</nav>
+</header>
+
+<section style="max-width:1200px;margin:0 auto;padding:96px 24px 72px;text-align:center">
+<p style="display:inline-block;font-size:13px;color:#D4D4D4;border:1px solid rgba(255,255,255,0.15);border-radius:999px;padding:6px 14px;margin-bottom:28px">Now live · Free during beta</p>
+<h1 style="font-size:clamp(40px,6vw,76px);line-height:1.04;letter-spacing:-0.035em;font-weight:700;max-width:960px;margin:0 auto">The control plane for AI-powered engineering teams.</h1>
+<p style="font-size:20px;color:#A1A1A1;max-width:680px;margin:24px auto 0">Plan, assign and ship engineering work with any AI model. Your keys, your models, and one place to see what got done today.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:36px">
+<a href="https://app.getitdonetoday.in/login" style="text-decoration:none;font-weight:600;font-size:16px;padding:15px 26px;border-radius:999px;background:{{accent}};color:#EFF6FF">Start free</a>
+<a href="#how" style="text-decoration:none;font-weight:600;font-size:16px;padding:15px 26px;border-radius:999px;border:1px solid rgba(255,255,255,0.15)">See how it works</a>
+</div>
+<p style="font-size:14px;color:#8A8A8A;margin-top:18px">Sign in with Google · Bring your own API keys · No credit card</p>
+
+<div style="margin:64px auto 0;max-width:1100px;text-align:left;border:1px solid rgba(255,255,255,0.10);border-radius:18px;background:#171717;overflow:hidden">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.10);font-size:14px">
+<span style="color:#A1A1A1">Workspace / <span style="color:#F5F5F4;font-weight:600">Client website rebuild</span></span>
+<span style="font-size:12px;font-weight:600;padding:4px 10px;border-radius:999px;background:#262626;color:#7AA2FF">Today · 4 of 6 done</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:16px;padding:20px">
+<sc-for list="{{columns}}" as="col" hint-placeholder-count="3">
+<div style="flex:1 1 260px;min-width:0;background:#111111;border:1px solid rgba(255,255,255,0.10);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px">
+<p style="font-size:13px;font-weight:600;color:#A1A1A1">{{col.name}} <span style="color:#737373">{{col.count}}</span></p>
+<sc-for list="{{col.cards}}" as="card" hint-placeholder-count="2">
+<div style="background:#1F1F1F;border:1px solid rgba(255,255,255,0.10);border-radius:10px;padding:12px">
+<p style="font-size:14px;font-weight:500">{{card.title}}</p>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+<span style="font-size:12px;padding:2px 8px;border-radius:6px;background:#27272A;color:#D4D4D4">{{card.model}}</span>
+<span style="width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,0.15);font-size:11px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">{{card.who}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</section>
+
+<section style="border-top:1px solid rgba(255,255,255,0.10);border-bottom:1px solid rgba(255,255,255,0.10)">
+<div style="max-width:1200px;margin:0 auto;padding:36px 24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 40px">
+<p style="font-size:14px;color:#8A8A8A">Model-agnostic. Works with your keys from</p>
+<p style="font-family:Inter,system-ui,sans-serif;font-size:20px;font-weight:600;color:#D4D4D4;display:flex;flex-wrap:wrap;gap:12px 36px">OpenAI <span>Anthropic</span> <span>Google Gemini</span> <span>Mistral</span> <span>DeepSeek</span></p>
+</div>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:112px 24px 0">
+<h2 style="font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;max-width:760px">AI made your team faster. It also made the work harder to see.</h2>
+<div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:48px">
+<div style="flex:1 1 300px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:28px;background:#171717">
+<h3 style="font-size:20px">Prompts everywhere</h3>
+<p style="color:#A1A1A1;margin-top:10px">Every developer has their own chats, prompts and keys. Nothing is shared or reused.</p>
+</div>
+<div style="flex:1 1 300px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:28px;background:#171717">
+<h3 style="font-size:20px">No visibility</h3>
+<p style="color:#A1A1A1;margin-top:10px">Leads can't tell what the AI did, which model did it, or whether it actually shipped.</p>
+</div>
+<div style="flex:1 1 300px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:28px;background:#171717">
+<h3 style="font-size:20px">Inconsistent output</h3>
+<p style="color:#A1A1A1;margin-top:10px">Same task, different person, different result. Quality depends on who asked.</p>
+</div>
+</div>
+</section>
+
+<section id="how" style="max-width:1200px;margin:0 auto;padding:112px 24px 0">
+<p style="font-size:14px;font-weight:600;color:#7AA2FF;letter-spacing:0.08em;text-transform:uppercase">How it works</p>
+<h2 style="font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;margin-top:12px">From task to done, in one place.</h2>
+<div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:48px">
+<div style="flex:1 1 300px;border-top:2px solid {{accent}};padding-top:24px">
+<p style="font-family:Inter,system-ui,sans-serif;font-size:15px;color:#8A8A8A">01</p>
+<h3 style="font-size:22px;margin-top:8px">Connect your models</h3>
+<p style="color:#A1A1A1;margin-top:10px">Add your own API keys for the providers you use. Nothing is locked to one vendor.</p>
+</div>
+<div style="flex:1 1 300px;border-top:2px solid rgba(255,255,255,0.15);padding-top:24px">
+<p style="font-family:Inter,system-ui,sans-serif;font-size:15px;color:#8A8A8A">02</p>
+<h3 style="font-size:22px;margin-top:8px">Plan and assign</h3>
+<p style="color:#A1A1A1;margin-top:10px">Break work into tasks, give them to people and AI, and track everything on one board.</p>
+</div>
+<div style="flex:1 1 300px;border-top:2px solid rgba(255,255,255,0.15);padding-top:24px">
+<p style="font-family:Inter,system-ui,sans-serif;font-size:15px;color:#8A8A8A">03</p>
+<h3 style="font-size:22px;margin-top:8px">Ship today</h3>
+<p style="color:#A1A1A1;margin-top:10px">Review the output, mark it done, and see what the whole team finished by end of day.</p>
+</div>
+</div>
+</section>
+
+<section id="features" style="max-width:1200px;margin:0 auto;padding:112px 24px 0">
+<p style="font-size:14px;font-weight:600;color:#7AA2FF;letter-spacing:0.08em;text-transform:uppercase">Features</p>
+<h2 style="font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;margin-top:12px">Everything your AI workflow was missing.</h2>
+<div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:48px">
+<sc-for list="{{features}}" as="f" hint-placeholder-count="6">
+<div style="flex:1 1 320px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:28px;background:#171717">
+<span style="width:40px;height:40px;border-radius:10px;background:#262626;display:inline-flex;align-items:center;justify-content:center"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7AA2FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"></path></svg></span>
+<h3 style="font-size:20px;margin-top:18px">{{f.title}}</h3>
+<p style="color:#A1A1A1;margin-top:8px">{{f.body}}</p>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section style="max-width:1200px;margin:0 auto;padding:112px 24px 0">
+<h2 style="font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-0.02em">Built for teams that ship for others.</h2>
+<div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:48px">
+<div style="flex:1 1 420px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:32px;background:#171717">
+<h3 style="font-size:24px">Dev agencies</h3>
+<p style="color:#A1A1A1;margin-top:10px">Run AI-assisted work across many client projects and see exactly what shipped for each one.</p>
+</div>
+<div style="flex:1 1 420px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:32px;background:#171717">
+<h3 style="font-size:24px">Startups</h3>
+<p style="color:#A1A1A1;margin-top:10px">Give a small team the output of a bigger one, without losing track of quality.</p>
+</div>
+</div>
+<div style="margin-top:20px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:40px;background:#171717">
+<p style="font-size:14px;color:#8A8A8A">Built on real client work</p>
+<p style="font-family:Inter,system-ui,sans-serif;font-size:clamp(22px,2.6vw,30px);line-height:1.3;margin-top:14px;max-width:880px">“[ADD A CUSTOMER QUOTE — one line on what changed after using GetItDoneToday.]”</p>
+<p style="color:#A1A1A1;margin-top:16px">[NAME], [ROLE, COMPANY]</p>
+</div>
+</section>
+
+<section id="pricing" style="max-width:1200px;margin:0 auto;padding:112px 24px 0">
+<p style="font-size:14px;font-weight:600;color:#7AA2FF;letter-spacing:0.08em;text-transform:uppercase">Pricing</p>
+<h2 style="font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-0.02em;margin-top:12px">Free while we're in beta.</h2>
+<div style="display:flex;flex-wrap:wrap;gap:20px;margin-top:48px">
+<div style="flex:1 1 380px;border:1px solid {{accent}};border-radius:14px;padding:32px;background:#171717;display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:22px">Beta</h3>
+<p style="font-family:Inter,system-ui,sans-serif;font-size:48px;font-weight:700;line-height:1">₹0 <span style="font-size:16px;font-weight:500;color:#A1A1A1">/ during beta</span></p>
+<p style="color:#A1A1A1">Full access to every feature. Bring your own API keys.</p>
+<a href="https://app.getitdonetoday.in/login" style="text-decoration:none;text-align:center;font-weight:600;padding:14px 20px;border-radius:999px;background:{{accent}};color:#EFF6FF;margin-top:auto">Start free</a>
+</div>
+<div style="flex:1 1 380px;border:1px solid rgba(255,255,255,0.10);border-radius:14px;padding:32px;background:#171717;display:flex;flex-direction:column;gap:16px">
+<h3 style="font-size:22px">Team</h3>
+<p style="font-family:Inter,system-ui,sans-serif;font-size:48px;font-weight:700;line-height:1">[YOUR PRICE] <span style="font-size:16px;font-weight:500;color:#A1A1A1">/ month</span></p>
+<p style="color:#A1A1A1">For agencies and growing teams. Coming after beta.</p>
+<a href="https://app.getitdonetoday.in/login" style="text-decoration:none;text-align:center;font-weight:600;padding:14px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);margin-top:auto">Join the beta</a>
+</div>
+</div>
+</section>
+
+<section id="faq" style="max-width:860px;margin:0 auto;padding:112px 24px 0">
+<h2 style="font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-0.02em">Questions</h2>
+<div style="margin-top:36px">
+<sc-for list="{{faqs}}" as="q" hint-placeholder-count="5">
+<div style="border-top:1px solid rgba(255,255,255,0.10);padding:24px 0">
+<h3 style="font-size:19px">{{q.q}}</h3>
+<p style="color:#A1A1A1;margin-top:8px">{{q.a}}</p>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section id="cta" style="max-width:1200px;margin:0 auto;padding:112px 24px">
+<div style="border-radius:24px;padding:72px 32px;text-align:center;background:{{accent}};color:#EFF6FF">
+<h2 style="font-size:clamp(36px,5vw,64px);line-height:1.05;letter-spacing:-0.03em">Get it done. Today.</h2>
+<p style="font-size:19px;margin:16px auto 0;max-width:560px;color:#DBEAFE">Set up your workspace in minutes and bring your first project onto one board.</p>
+<a href="https://app.getitdonetoday.in/login" style="display:inline-block;margin-top:32px;text-decoration:none;font-weight:600;font-size:16px;padding:15px 28px;border-radius:999px;background:#0A0A0A;color:#F5F5F4">Start free</a>
+</div>
+</section>
+
+<footer style="border-top:1px solid rgba(255,255,255,0.10)">
+<div style="max-width:1200px;margin:0 auto;padding:32px 24px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:14px;color:#8A8A8A">
+<p>© 2026 GetItDoneToday · getitdonetoday.in</p>
+<div style="display:flex;flex-wrap:wrap;gap:24px">
+<a href="#features" style="text-decoration:none;color:#A1A1A1">Features</a>
+<a href="#pricing" style="text-decoration:none;color:#A1A1A1">Pricing</a>
+<a href="#faq" style="text-decoration:none;color:#A1A1A1">FAQ</a>
+<a href="https://app.getitdonetoday.in/login" style="text-decoration:none;color:#A1A1A1">Sign in</a>
+</div>
+</div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#155DFC","options":["#155DFC","#2563EB","#3B82F6"]},"$preview":{"width":1440,"height":5150}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accent ?? '#155DFC',
+      columns: [
+        { name: 'To do', count: '2', cards: [
+          { title: 'Write tests for the auth flow', model: 'Claude', who: 'AK' },
+          { title: 'Draft release notes', model: 'GPT', who: 'RS' }
+        ]},
+        { name: 'In progress', count: '2', cards: [
+          { title: 'Generate checkout API endpoints', model: 'Gemini', who: 'HZ' },
+          { title: 'Refactor dashboard components', model: 'Claude', who: 'NM' }
+        ]},
+        { name: 'Done today', count: '4', cards: [
+          { title: 'Fix push notification bug', model: 'GPT', who: 'HZ' },
+          { title: 'Migrate users table to Postgres', model: 'DeepSeek', who: 'AK' }
+        ]}
+      ],
+      features: [
+        { title: 'One board for people and AI', body: 'Plan tasks, assign them to teammates or models, and follow every step to done.' },
+        { title: 'Bring your own key', body: 'Use your own API keys. You stay in control of providers and costs.' },
+        { title: 'Any model, no lock-in', body: 'Switch models per task. Use the best one for the job, not the one you are stuck with.' },
+        { title: 'Team visibility', body: 'See who did what, with which model, and what shipped today, at a glance.' },
+        { title: 'Instant notifications', body: 'Get notified the moment a task moves, so nothing waits on a missed update.' },
+        { title: 'Sign in with Google', body: 'One click to get your team in. No new passwords to manage.' }
+      ],
+      faqs: [
+        { q: 'Which AI models can I use?', a: 'Any provider you have an API key for. You bring your own key, so you are never locked to one vendor.' },
+        { q: 'How are my API keys stored?', a: '[YOUR ANSWER — explain how keys are stored and encrypted.]' },
+        { q: 'Is it really free?', a: 'Yes. Everything is free while GetItDoneToday is in beta.' },
+        { q: 'Who is it for?', a: 'Dev agencies and startups whose engineers already use AI and want one place to plan, track and ship that work.' },
+        { q: 'How do I get started?', a: 'Sign in with Google or email, add your first API key, and create a project. It takes a few minutes.' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
