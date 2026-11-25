@@ -26,10 +26,17 @@ export function Pricing() {
                   {plan.badge}
                 </span>
               </div>
-              <p className="text-[clamp(36px,5vw,48px)] leading-none font-bold tracking-[-0.02em] break-words">
-                {plan.price}{" "}
-                <span className="text-base font-medium tracking-normal text-muted">{plan.period}</span>
-              </p>
+              {plan.period ? (
+                <p className="text-[clamp(36px,5vw,48px)] leading-none font-bold tracking-[-0.02em]">
+                  {plan.price}{" "}
+                  <span className="text-base font-medium tracking-normal text-muted">{plan.period}</span>
+                </p>
+              ) : (
+                // Text price (e.g. "Announced after beta"): sized to sit on the same baseline as "₹0".
+                <p className="flex min-h-[36px] items-end text-2xl leading-tight font-semibold tracking-[-0.015em] sm:min-h-12 sm:text-[28px]">
+                  {plan.price}
+                </p>
+              )}
               <p className="text-muted">{plan.description}</p>
               <ButtonLink
                 href={plan.cta.href}

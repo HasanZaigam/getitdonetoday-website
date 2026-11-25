@@ -104,20 +104,40 @@ export type TextCard = { title: string; body: string };
 
 export const problem = {
   title: "AI made your team faster. It also made the work harder to see.",
-  cards: [
+  beforeLabel: "Without a shared board",
+  afterLabel: "With GetItDoneToday",
+  rows: [
     {
-      title: "Prompts everywhere",
-      body: "Every developer has their own chats, prompts and keys. Nothing is shared or reused.",
+      before: {
+        title: "Prompts everywhere",
+        body: "Every developer has their own chats, prompts and keys. Nothing is shared or reused.",
+      },
+      after: {
+        title: "One shared workspace",
+        body: "Keys, models and project rules live in one place, and every task follows the same rules.",
+      },
     },
     {
-      title: "No visibility",
-      body: "Leads can't tell what the AI did, which model did it, or whether it actually shipped.",
+      before: {
+        title: "No visibility",
+        body: "Leads can't tell what the AI did, which model did it, or whether it actually shipped.",
+      },
+      after: {
+        title: "Every task is traceable",
+        body: "See who assigned it, which model worked on it, and the pull request it produced.",
+      },
     },
     {
-      title: "Inconsistent output",
-      body: "Same task, different person, different result. Quality depends on who asked.",
+      before: {
+        title: "Inconsistent output",
+        body: "Same task, different person, different result. Quality depends on who asked.",
+      },
+      after: {
+        title: "Same checks, every time",
+        body: "Each task runs your checks and gets an independent review before you see the pull request.",
+      },
     },
-  ] satisfies TextCard[],
+  ] satisfies { before: TextCard; after: TextCard }[],
 };
 
 export const howItWorks = {
@@ -211,16 +231,26 @@ export const audience = {
   ] satisfies TextCard[],
 };
 
-export const testimonial = {
-  label: "Built on real client work",
-  quote: "“[ADD A CUSTOMER QUOTE — one line on what changed after using GetItDoneToday.]”",
-  attribution: "[NAME], [ROLE, COMPANY]",
+export const LINKEDIN_URL = "https://www.linkedin.com/in/hasan-zaigam/";
+export const GITHUB_URL = "https://github.com/HasanZaigam/getitdonetoday-website";
+export const CONTACT_EMAIL = "hello@getitdonetoday.in";
+
+export const founderNote = {
+  label: "Why we built it",
+  paragraphs: [
+    "I built GetItDoneToday while running AI-assisted client projects at an agency. The AI work lived in personal chats and keys, and it was hard to say what had actually shipped for each client.",
+    "This is the board I wanted: the tasks, the models and the pull requests in one place.",
+  ],
+  name: "Hasan Zaigam",
+  role: "Founder · AI Engineer",
+  initials: "HZ",
+  link: { label: "Hasan on LinkedIn", href: LINKEDIN_URL },
 };
 
 export type Plan = {
   name: string;
   price: string;
-  period: string;
+  period?: string;
   description: string;
   cta: { label: string; href: string };
   highlighted: boolean;
@@ -242,10 +272,13 @@ export const pricing = {
     },
     {
       name: "Team",
-      price: "[YOUR PRICE]",
-      period: "/ month",
-      description: "For agencies and growing teams. Coming after beta.",
-      cta: { label: "Join the beta", href: APP_LOGIN_URL },
+      price: "Announced after beta",
+      description: "For agencies and growing teams. Email us and we'll let you know when it launches.",
+      // No backend on this static site, so "Notify me" opens an email instead of a form.
+      cta: {
+        label: "Notify me",
+        href: `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("Notify me about the Team plan")}`,
+      },
       highlighted: false,
       badge: "After beta",
     },

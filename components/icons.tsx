@@ -89,9 +89,9 @@ export function MenuIcon() {
   );
 }
 
-export function CloseIcon() {
+export function CloseIcon({ className }: { className?: string }) {
   return (
-    <Svg width={22} height={22}>
+    <Svg width={22} height={22} className={className}>
       <path d="M6 6l12 12M18 6 6 18" />
     </Svg>
   );
