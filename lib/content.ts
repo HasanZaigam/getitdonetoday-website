@@ -1,5 +1,5 @@
 // All marketing copy and data for the landing page lives here.
-// Placeholders in [BRACKETS] are intentional — see README "TODO before launch".
+// Only confirmed facts belong in this file; see README "TODO before launch".
 
 export const SITE_URL = "https://getitdonetoday.in";
 export const APP_LOGIN_URL = "https://app.getitdonetoday.in/login";
