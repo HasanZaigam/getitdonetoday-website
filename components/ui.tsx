@@ -41,13 +41,13 @@ export function ButtonLink({
   );
 }
 
-export function LogoMark({ className }: { className?: string }) {
+export function LogoMark({ small = false }: { small?: boolean }) {
   return (
     <span
       aria-hidden="true"
       className={cn(
-        "inline-flex size-[34px] shrink-0 items-center justify-center rounded-[11px] bg-brand font-mono text-[13px] font-semibold text-on-brand",
-        className,
+        "inline-flex shrink-0 items-center justify-center bg-brand font-mono font-semibold text-on-brand",
+        small ? "size-6 rounded-[8px] text-[10px]" : "size-[34px] rounded-[11px] text-[13px]",
       )}
     >
       &lt;/&gt;

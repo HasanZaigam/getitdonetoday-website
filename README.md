@@ -32,8 +32,8 @@ app/
   icon.svg          # favicon (blue "</>" mark)
   robots.ts, sitemap.ts
 components/
-  sections/         # Navbar, Hero, ModelStrip, Problem, HowItWorks, Features,
-                    # Audience, Testimonial, Pricing, FAQ, FinalCTA, Footer
+  sections/         # Navbar, Hero, ModelStrip, VideoTour, Problem, HowItWorks,
+                    # Features, Audience, Testimonial, Pricing, FAQ, FinalCTA, Footer
   ui.tsx            # Container, ButtonLink, Logo, SectionHeading, Card
   icons.tsx         # inline stroke SVG icons
   ScrollReveal.tsx  # fade-in on scroll (respects prefers-reduced-motion)
@@ -41,6 +41,18 @@ lib/
   content.ts        # all copy and data arrays, edit text here
 design/
   Main.dc.html      # original visual reference
+public/video/
+  GetItDoneToday-Walkthrough-Voiced.mp4  # product tour (H.264/AAC, faststart)
+  walkthrough-poster.jpg                 # poster frame shown before play
+```
+
+### Replacing the product tour video
+
+Keep the same file name, or update `videoTour` in `lib/content.ts`. Before committing, move the MP4 index to the front so playback starts quickly, and regenerate the poster:
+
+```bash
+ffmpeg -i input.mp4 -c copy -movflags +faststart public/video/GetItDoneToday-Walkthrough-Voiced.mp4
+ffmpeg -ss 2 -i public/video/GetItDoneToday-Walkthrough-Voiced.mp4 -frames:v 1 -vf scale=1600:-1 -q:v 3 public/video/walkthrough-poster.jpg
 ```
 
 Colours, fonts and radii are defined as tokens in `app/globals.css` (for example `bg-card`, `text-muted`, `border-line` and `bg-brand`). Use those tokens instead of adding raw hex values.
@@ -62,4 +74,5 @@ These placeholders are intentionally left in `lib/content.ts`:
 - [ ] **API-key storage answer**: replace `[YOUR ANSWER — explain how keys are stored and encrypted.]` in `faq.items`.
 - [ ] **Confirm the model list**: check that OpenAI, Anthropic, Google Gemini, Mistral and DeepSeek (`modelStrip.providers`) and the board mock's model chips match what the app supports.
 - [ ] **Confirm the features**: check that every item in `features.items` (Google sign-in, instant notifications, and so on) is live in the app.
+- [ ] Optional: add a captions file (`.vtt`) for the product tour so the narration is accessible without sound.
 - [ ] Optional: add an Open Graph image (`app/opengraph-image.png`, 1200×630) for nicer link previews.

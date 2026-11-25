@@ -88,6 +88,22 @@ export function CloseIcon() {
   );
 }
 
+export function CheckIcon({ className }: { className?: string }) {
+  return (
+    <Svg width={16} height={16} className={className} strokeWidth={2.5}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </Svg>
+  );
+}
+
+export function PlayIcon({ className }: { className?: string }) {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" className={className} fill="currentColor">
+      <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z" />
+    </svg>
+  );
+}
+
 export function PlusIcon({ className }: { className?: string }) {
   return (
     <Svg width={18} height={18} className={className}>

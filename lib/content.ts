@@ -15,6 +15,7 @@ export const site = {
 export type NavLink = { label: string; href: string };
 
 export const navLinks: NavLink[] = [
+  { label: "Product tour", href: "#tour" },
   { label: "Features", href: "#features" },
   { label: "How it works", href: "#how" },
   { label: "Pricing", href: "#pricing" },
@@ -64,6 +65,19 @@ export const board = {
       ],
     },
   ] satisfies BoardColumn[],
+};
+
+// Title and subtitle are taken from the video's own opening card.
+export const videoTour = {
+  eyebrow: "Product tour",
+  title: "Your first 10 minutes, in two.",
+  subtitle:
+    "A quick tour of every screen, for first-time users: sign up, connect GitHub, create a project and start your first task.",
+  src: "/video/GetItDoneToday-Walkthrough-Voiced.mp4",
+  poster: "/video/walkthrough-poster.jpg",
+  duration: "2:21",
+  durationLabel: "2 minutes 21 seconds",
+  heroLink: "Watch the 2-minute tour",
 };
 
 export const modelStrip = {
@@ -177,6 +191,7 @@ export type Plan = {
   description: string;
   cta: { label: string; href: string };
   highlighted: boolean;
+  badge: string;
 };
 
 export const pricing = {
@@ -190,6 +205,7 @@ export const pricing = {
       description: "Full access to every feature. Bring your own API keys.",
       cta: { label: "Start free", href: APP_LOGIN_URL },
       highlighted: true,
+      badge: "Live now",
     },
     {
       name: "Team",
@@ -198,6 +214,7 @@ export const pricing = {
       description: "For agencies and growing teams. Coming after beta.",
       cta: { label: "Join the beta", href: APP_LOGIN_URL },
       highlighted: false,
+      badge: "After beta",
     },
   ] satisfies Plan[],
 };

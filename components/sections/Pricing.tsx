@@ -15,7 +15,17 @@ export function Pricing() {
                 plan.highlighted ? "border-brand" : "border-line",
               )}
             >
-              <h3 className="text-[22px] font-semibold tracking-[-0.01em]">{plan.name}</h3>
+              <div className="flex items-center justify-between gap-3">
+                <h3 className="text-[22px] font-semibold tracking-[-0.01em]">{plan.name}</h3>
+                <span
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-xs font-semibold",
+                    plan.highlighted ? "bg-brand/15 text-brand-light" : "bg-chip text-muted",
+                  )}
+                >
+                  {plan.badge}
+                </span>
+              </div>
               <p className="text-[clamp(36px,5vw,48px)] leading-none font-bold tracking-[-0.02em] break-words">
                 {plan.price}{" "}
                 <span className="text-base font-medium tracking-normal text-muted">{plan.period}</span>

@@ -11,6 +11,7 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Pricing } from "@/components/sections/Pricing";
 import { Problem } from "@/components/sections/Problem";
 import { Testimonial } from "@/components/sections/Testimonial";
+import { VideoTour } from "@/components/sections/VideoTour";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <main id="main">
         <Hero />
         <ModelStrip />
+        <VideoTour />
         <Problem />
         <HowItWorks />
         <Features />

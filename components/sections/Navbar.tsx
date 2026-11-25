@@ -27,7 +27,7 @@ export function Navbar() {
   const close = () => setOpen(false);
 
   return (
-    <header className="border-b border-line">
+    <header className="sticky top-0 z-40 border-b border-line bg-bg/80 backdrop-blur-md supports-[backdrop-filter]:bg-bg/70">
       <Container>
         <nav
           aria-label="Main"
@@ -35,7 +35,7 @@ export function Navbar() {
         >
           <Logo wordmark={site.wordmark} />
 
-          <ul className="hidden items-center gap-7 text-[15px] lg:flex">
+          <ul className="hidden items-center gap-6 text-[15px] lg:flex xl:gap-7">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a href={link.href} className="text-muted transition-colors hover:text-fg">
