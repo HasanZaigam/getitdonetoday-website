@@ -15,7 +15,8 @@ export function FinalCTA() {
           >
             {finalCta.title}
           </h2>
-          <p className="mx-auto mt-4 max-w-[560px] text-[19px] text-on-brand-soft">{finalCta.body}</p>
+          {/* text-on-brand (#EFF6FF) passes AA on the brand blue (4.8:1); on-brand-soft was 4.3:1. */}
+          <p className="mx-auto mt-4 max-w-[560px] text-[19px] text-on-brand">{finalCta.body}</p>
           <ButtonLink href={finalCta.cta.href} variant="inverse" className="mt-8 px-7">
             {finalCta.cta.label}
           </ButtonLink>
