@@ -319,10 +319,31 @@ export const finalCta = {
 
 export const footer = {
   copyright: "© 2026 GetItDoneToday · getitdonetoday.in",
-  links: [
-    { label: "Features", href: "#features" },
-    { label: "Pricing", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Sign in", href: APP_LOGIN_URL },
-  ] satisfies NavLink[],
+  tagline: "The AI task board for dev agencies and startups.",
+  groups: [
+    {
+      title: "Product",
+      links: [
+        { label: "Features", href: "/#features" },
+        { label: "Pricing", href: "/#pricing" },
+        { label: "FAQ", href: "/#faq" },
+        { label: "Sign in", href: APP_LOGIN_URL },
+      ],
+    },
+    {
+      title: "Company",
+      links: [
+        { label: "LinkedIn", href: LINKEDIN_URL },
+        { label: "GitHub", href: GITHUB_URL },
+        { label: "Contact", href: `mailto:${CONTACT_EMAIL}` },
+      ],
+    },
+    {
+      title: "Legal",
+      links: [
+        { label: "Privacy", href: "/privacy" },
+        { label: "Terms", href: "/terms" },
+      ],
+    },
+  ] satisfies { title: string; links: NavLink[] }[],
 };
